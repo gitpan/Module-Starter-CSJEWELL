@@ -1,0 +1,20 @@
+Build.PL
+Changes
+lib/Module/Starter/CSJEWELL.pm
+lib/Module/Starter/CSJEWELL.pod
+MANIFEST			This list of files
+t/000_load.t
+t/800_perlcritic.t
+t/801_pod.t
+t/802_pod_coverage.t
+t/803_minimumversion.t
+t/804_manifest.t
+t/805_meta.t
+t/806_portability.t
+t/899_prereq.t
+t/settings/perlcritic.txt
+t/settings/perltidy.txt
+Makefile.PL
+README
+LICENSE
+META.yml
