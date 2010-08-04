@@ -19,13 +19,8 @@ my @MODULES = (
 	'Test::Perl::Critic',
 );
 
-# Don't run tests for installs
-use Test::More;
-unless ( $ENV{AUTOMATED_TESTING} or $ENV{RELEASE_TESTING} ) {
-	plan( skip_all => "Author tests not required for installation" );
-}
-
 # Load the testing modules
+use Test::More;
 foreach my $MODULE ( @MODULES ) {
 	eval "require $MODULE"; # Has to be require because we pass options to import.
 	if ( $EVAL_ERROR ) {
@@ -43,9 +38,9 @@ use File::Spec::Functions qw(catfile);
 Perl::Critic::Utils::Constants->import(':profile_strictness');
 my $dummy = $Perl::Critic::Utils::Constants::PROFILE_STRICTNESS_QUIET;
 
-local $ENV{PERLTIDY} = catfile( 't', 'settings', 'perltidy.txt' );
+local $ENV{PERLTIDY} = catfile( 'xt', 'settings', 'perltidy.txt' );
 
-my $rcfile = catfile( 't', 'settings', 'perlcritic.txt' );
+my $rcfile = catfile( 'xt', 'settings', 'perlcritic.txt' );
 Test::Perl::Critic->import( 
 	-profile            => $rcfile, 
 	-severity           => 1, 

@@ -1,6 +1,6 @@
 #!perl
 
-# Test that our META.yml file matches the specification
+# Test that our declared minimum Perl version matches our syntax
 
 use strict;
 
@@ -12,17 +12,12 @@ BEGIN {
 }
 
 my @MODULES = (
-    'Parse::CPAN::Meta 1.38',
-	'Test::CPAN::Meta 0.13',
+	'Perl::MinimumVersion 1.20',
+	'Test::MinimumVersion 0.008',
 );
 
-# Don't run tests for installs
-use Test::More;
-unless ( $ENV{AUTOMATED_TESTING} or $ENV{RELEASE_TESTING} ) {
-	plan( skip_all => "Author tests not required for installation" );
-}
-
 # Load the testing modules
+use Test::More;
 foreach my $MODULE ( @MODULES ) {
 	eval "use $MODULE";
 	if ( $EVAL_ERROR ) {
@@ -32,5 +27,5 @@ foreach my $MODULE ( @MODULES ) {
 	}
 }
 
-meta_yaml_ok();
+all_minimum_version_from_metayml_ok();
 

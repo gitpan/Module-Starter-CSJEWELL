@@ -1,6 +1,6 @@
 #!perl
 
-# Test that our MANIFEST describes the distribution
+# Test that our META.yml file matches the specification
 
 use strict;
 
@@ -12,20 +12,12 @@ BEGIN {
 }
 
 my @MODULES = (
-	'Test::DistManifest 1.001003',
+    'Parse::CPAN::Meta 1.38',
+	'Test::CPAN::Meta 0.13',
 );
 
-# Don't run tests for installs
-use Test::More;
-unless ( $ENV{AUTOMATED_TESTING} or $ENV{RELEASE_TESTING} ) {
-	plan( skip_all => "Author tests not required for installation" );
-}
-unless ( -e 'MANIFEST.SKIP' ) {
-	plan( skip_all => "MANIFEST.SKIP does not exist, so cannot test this." );
-}
-
-
 # Load the testing modules
+use Test::More;
 foreach my $MODULE ( @MODULES ) {
 	eval "use $MODULE";
 	if ( $EVAL_ERROR ) {
@@ -35,5 +27,5 @@ foreach my $MODULE ( @MODULES ) {
 	}
 }
 
-manifest_ok();
+meta_yaml_ok();
 

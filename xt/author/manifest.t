@@ -1,6 +1,6 @@
 #!perl
 
-# Test that our files are portable across systems.
+# Test that our MANIFEST describes the distribution
 
 use strict;
 
@@ -12,16 +12,14 @@ BEGIN {
 }
 
 my @MODULES = (
-	'Test::Portability::Files 0.05',
+	'Test::DistManifest 1.001003',
 );
 
-# Don't run tests for installs
-use Test::More;
-unless ( $ENV{AUTOMATED_TESTING} or $ENV{RELEASE_TESTING} ) {
-	plan( skip_all => "Author tests not required for installation" );
-}
-
 # Load the testing modules
+use Test::More;
+unless ( -e 'MANIFEST.SKIP' ) {
+	plan( skip_all => "MANIFEST.SKIP does not exist, so cannot test this." );
+}
 foreach my $MODULE ( @MODULES ) {
 	eval "use $MODULE";
 	if ( $EVAL_ERROR ) {
@@ -31,5 +29,5 @@ foreach my $MODULE ( @MODULES ) {
 	}
 }
 
-run_tests();
+manifest_ok();
 

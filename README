@@ -8,7 +8,7 @@ INSTALLATION
             make test
             make install
 
-    This method of installation will install a current version of
+    This method of installation will still require a current version of
     Module::Build if it is not already installed.
 
     Alternatively, to install with Module::Build, you can use the following
@@ -23,7 +23,7 @@ DEPENDENCIES
     Requires the `Module::Starter' module.
 
 LICENSE AND COPYRIGHT
-    Copyright (c) 2009, Curtis Jewell `<CSJewell@cpan.org>'. All rights
+    Copyright (c) 2009-2010, Curtis Jewell `<CSJewell@cpan.org>'. All rights
     reserved.
 
     Based on Module::Starter::PBP, Copyright (c) 2005, Damian Conway
